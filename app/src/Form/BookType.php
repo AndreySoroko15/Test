@@ -6,8 +6,6 @@ use App\Entity\Book;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookType extends AbstractType
@@ -26,16 +24,18 @@ class BookType extends AbstractType
             ->add('isbn')
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
-            $data = $event->getData();
+        //hook for description cutting by substr
 
-            if (isset($data['description'])) {
-                $data['description'] = substr($data['description'], 0, 80);
-            }
-
-            // Update the event with the modified data
-            $event->setData($data);
-        });
+//        $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+//            $data = $event->getData();
+//
+//            if (isset($data['description'])) {
+//                $data['description'] = substr($data['description'], 0, 80);
+//            }
+//
+//            // Update the event with the modified data
+//            $event->setData($data);
+//        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

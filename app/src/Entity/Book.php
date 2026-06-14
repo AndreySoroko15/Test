@@ -23,7 +23,7 @@ class Book
     #[Assert\NotBlank]
     private ?string $author = null;
 
-    #[ORM\Column(length: 80, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

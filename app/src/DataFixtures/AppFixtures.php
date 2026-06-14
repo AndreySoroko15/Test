@@ -15,9 +15,12 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 100; $i++) {
             $description = $faker->paragraph;
-            if (strlen($description) > 80) {
-                $description = substr($description, 0, 80) ;
-            }
+
+            // commit limit for seeder
+
+//            if (strlen($description) > 80) {
+//                $description = substr($description, 0, 80) ;
+//            }
 
             $book = new Book();
             $book
