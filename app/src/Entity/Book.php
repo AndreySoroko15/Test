@@ -35,6 +35,9 @@ class Book
     #[Assert\Regex(pattern: '/^\d{13}$/', message: 'The ISBN must be a valid ISBN-13 numbers format.')]
     private ?string $isbn = null;
 
+    #[ORM\ManyToOne(targetEntity: BookCategory::class, inversedBy: 'books')]
+    private BookCategory $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,6 +99,18 @@ class Book
     public function setIsbn(string $isbn): static
     {
         $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getCategory(): ?BookCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?BookCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
