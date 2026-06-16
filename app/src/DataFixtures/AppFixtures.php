@@ -6,6 +6,7 @@ use App\Entity\Book;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Faker\Factory;
 use Doctrine\Persistence\ObjectManager;
+use App\Entity\BookCategory;
 
 class AppFixtures extends Fixture
 {
@@ -13,14 +14,23 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create();
 
+        // categories faker
+        $categoriesTitles = ['Fiction', 'Science', 'History'];
+
+        foreach ($categoriesTitles as $categoryTitle) {
+            $category = new BookCategory();
+            $category
+                ->setTitle($categoryTitle)
+                ->setPublishedAt($faker->dateTimeBetween('-30 years', 'now'))
+            ;
+
+            $manager->persist($category);
+
+            $categories[] = $category;
+        }
+
         for ($i = 0; $i < 100; $i++) {
             $description = $faker->paragraph;
-
-            // commit limit for seeder
-
-//            if (strlen($description) > 80) {
-//                $description = substr($description, 0, 80) ;
-//            }
 
             $book = new Book();
             $book
@@ -29,6 +39,7 @@ class AppFixtures extends Fixture
                 ->setPublishedAt($faker->dateTimeBetween('-30 years', 'now'))
                 ->setDescription($description)
                 ->setIsbn($faker->isbn13)
+                ->setCategory($faker->randomElement($categories));
             ;
             $manager->persist($book);
         }
