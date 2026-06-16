@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BookCategoryRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\Collection;
@@ -23,6 +24,9 @@ class BookCategory
     #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'category')]
     private Collection $books;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
+    private ?\DateTime $publishedAt = null;
 
     public function __construct()
     {
@@ -47,6 +51,18 @@ class BookCategory
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTime
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(?\DateTime $publishedAt): static
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }

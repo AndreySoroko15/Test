@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}BookCategory{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+        <h1>BookCategory</h1>
+
+        {{ include('category/_delete_form.html.twig') }}
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ category.title }}</td>
+            </tr>
+            <tr>
+                <th>Published</th>
+                <td>{{ category.publishedAt ? category.publishedAt|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+
+    <a class="btn btn-light" href="{{ path('app_category_index') }}">back to list</a>
+{% endblock %}

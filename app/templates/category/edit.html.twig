@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit BookCategory{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap gap-3">
+        <h1>Edit BookCategory</h1>
+
+        {{ include('category/_delete_form.html.twig') }}
+    </div>
+
+
+    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}
