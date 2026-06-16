@@ -38,6 +38,13 @@
                 <th>Isbn</th>
                 <td>{{ book.isbn }}</td>
             </tr>
+
+            {% if book.category %}
+                <tr>
+                    <th>Category</th>
+                    <td><a href="{{ path('app_category_show', { 'id': category.id }) }}">{{ category.title }}</a></td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 

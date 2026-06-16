@@ -36,7 +36,7 @@ class Book
     private ?string $isbn = null;
 
     #[ORM\ManyToOne(targetEntity: BookCategory::class, inversedBy: 'books')]
-    private BookCategory $category;
+    private ?BookCategory $category = null;
 
     public function getId(): ?int
     {

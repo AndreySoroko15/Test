@@ -54,8 +54,11 @@ final class BookController extends AbstractController
     #[Route('/{id}', name: 'app_book_show', methods: ['GET'])]
     public function show(Book $book): Response
     {
+        $category = $book->getCategory();
+
         return $this->render('book/show.html.twig', [
             'book' => $book,
+            'category' => $category,
         ]);
     }
 

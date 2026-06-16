@@ -3,11 +3,16 @@
 {% block title %}BookCategory{% endblock %}
 
 {% block body %}
-    <div class="d-flex justify-content-between flex-wrap gap-3">
-        <h1>BookCategory</h1>
+    <h1>BookCategory</h1>
 
-        {{ include('category/_delete_form.html.twig') }}
+    <div class="float-end">
+        <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-secondary">Edit</a>
+        <div class="float-end">
+            {{ include('category/_delete_form.html.twig') }}
+        </div>
     </div>
+
+    {{ include('components/_flash.html.twig') }}
 
     <table class="table">
         <tbody>
@@ -25,8 +30,6 @@
             </tr>
         </tbody>
     </table>
-
-    <a class="btn btn-secondary" href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
 
     <a class="btn btn-light" href="{{ path('app_category_index') }}">back to list</a>
 {% endblock %}

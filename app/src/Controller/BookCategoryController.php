@@ -81,6 +81,12 @@ final class BookCategoryController extends AbstractController
     public function delete(Request $request, BookCategory $bookCategory, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$bookCategory->getId(), $request->getPayload()->getString('_token'))) {
+            if($bookCategory->getBooks()->count() > 0) {
+                $this->addFlash('danger', 'Category cannot be deleted! Used references with books');
+
+                return $this->redirectToRoute('app_category_show', ['id' => $bookCategory->getId()], Response::HTTP_SEE_OTHER);
+            }
+
             $entityManager->remove($bookCategory);
             $entityManager->flush();
         }

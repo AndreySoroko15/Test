@@ -20,7 +20,6 @@ class BookCategoryType extends AbstractType
             ])
         ;
 
-
         $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
             $data = $event->getData();
 
