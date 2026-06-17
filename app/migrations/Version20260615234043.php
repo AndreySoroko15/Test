@@ -20,12 +20,12 @@ final class Version20260615234043 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE category ADD published_at DATE NOT NULL');
+        $this->addSql('ALTER TABLE book_category ADD published_at DATE NOT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE category DROP published_at');
+        $this->addSql('ALTER TABLE book_category DROP published_at');
     }
 }
